@@ -20,7 +20,7 @@ def preflight_url(url: str, session=None, timeout: int = 15) -> bool:
             status = response.status_code
             content_type = response.headers.get("Content-Type", "").lower()
             return status in (200, 206) and (content_type.startswith("video/") or content_type == "application/octet-stream")
-        request = Request(url, headers={"Range": "bytes=0-0", "User-Agent": "ThreadsVideoPublisher/1.0"}, method="GET")
+        request = Request(url, headers={"Range": "bytes=0-0", "User-Agent": "TumblrVideoPublisher/1.0"}, method="GET")
         try:
             response = urlopen(request, timeout=timeout)
             status = response.status

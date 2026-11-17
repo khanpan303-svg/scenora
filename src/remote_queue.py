@@ -14,7 +14,7 @@ def discover_public_video_names(owner: str, repo: str, branch: str, timeout: int
     if not all((owner, repo, branch)):
         raise ValueError("Public repository owner, name and branch are required")
     url = f"https://api.github.com/repos/{quote(owner, safe='')}/{quote(repo, safe='')}/contents/videos?ref={quote(branch, safe='')}"
-    req = Request(url, headers={"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "ThreadsVideoPublisher/1.0"})
+    req = Request(url, headers={"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "TumblrVideoPublisher/1.0"})
     try:
         with urlopen(req, timeout=timeout) as response:
             data = json.loads(response.read().decode("utf-8"))
@@ -44,7 +44,7 @@ def discover_public_video_names(owner: str, repo: str, branch: str, timeout: int
 
 def download_public_video(owner: str, repo: str, branch: str, filename: str, destination: Path, timeout: int = 45) -> Path:
     url = public_raw_url(owner, repo, branch, filename)
-    req = Request(url, headers={"Accept": "video/mp4,video/quicktime,application/octet-stream;q=0.8", "User-Agent": "ThreadsVideoPublisher/1.0"})
+    req = Request(url, headers={"Accept": "video/mp4,video/quicktime,application/octet-stream;q=0.8", "User-Agent": "TumblrVideoPublisher/1.0"})
     destination.parent.mkdir(parents=True, exist_ok=True)
     total = 0
     try:

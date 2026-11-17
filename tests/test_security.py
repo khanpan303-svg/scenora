@@ -18,7 +18,7 @@ def test_external_service_secrets_are_only_in_publisher_job():
     for name in ("scheduler.yml", "maintenance.yml"):
         text = (ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
         commit_section = text.split("  persist-state:", 1)[1]
-        for secret in ("AI_API_KEY", "THREADS_ACCESS_TOKEN"):
+        for secret in ("AI_API_KEY", "TUMBLR_CONSUMER_SECRET", "TUMBLR_OAUTH_TOKEN_SECRET"):
             assert f"secrets.{secret}" not in commit_section
         assert "contents: write" in commit_section
 
@@ -70,18 +70,18 @@ def test_ffmpeg_subprocess_does_not_inherit_credentials(monkeypatch, tmp_path):
     monkeypatch.setattr(video_analyzer.subprocess, "run", fake_run)
     # Mock shutil.which by replacing the function after import
     monkeypatch.setattr("src.video_analyzer.shutil.which", lambda x: "/usr/bin/ffmpeg")
-    monkeypatch.setenv("THREADS_ACCESS_TOKEN", "DO_NOT_INHERIT")
+    monkeypatch.setenv("TUMBLR_CONSUMER_SECRET", "DO_NOT_INHERIT")
 
     frames, _ = video_analyzer.extract_frames(
         video, max_frames=1, sample_window_seconds=1
     )
 
-    assert "THREADS_ACCESS_TOKEN" not in seen["env"]
+    assert "TUMBLR_CONSUMER_SECRET" not in seen["env"]
     assert "AI_API_KEY" not in seen["env"]
     assert seen["stdin"] is video_analyzer.subprocess.DEVNULL
 
 
-def test_dry_run_workflow_steps_do_not_receive_threads_secrets():
+def test_dry_run_workflow_steps_do_not_receive_tumblr_secrets():
     for name in ("scheduler.yml", "maintenance.yml"):
         text = (ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
 
@@ -94,7 +94,8 @@ def test_dry_run_workflow_steps_do_not_receive_threads_secrets():
         )[1].split("      - name: Run live publisher", 1)[0]
 
         assert "secrets." not in dry
-        assert "secrets.THREADS_ACCESS_TOKEN" not in ai_dry
+        assert "secrets.TUMBLR_CONSUMER_SECRET" not in ai_dry
+        assert "secrets.TUMBLR_OAUTH_TOKEN_SECRET" not in ai_dry
         assert "secrets.AI_API_KEY" in ai_dry
 
 

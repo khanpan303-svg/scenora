@@ -7,14 +7,14 @@ from src.config import ROOT, load_config
 from src.video_analyzer import discover_videos, stable_video_id, validate_video, extract_frames, public_raw_url
 from src.media_storage import preflight_url
 from src.caption_generator import generate_caption, GeminiError
-from src.threads_publisher import ThreadsPublisher, ThreadsError
+from src.tumblr_publisher import TumblrPublisher, TumblrError
 from src.state_manager import read_state, write_state_atomic
 from src.retry_manager import retry_decision, retry_at
 from src.scheduler import unfulfilled_slots
 from src.remote_queue import discover_public_video_names, download_public_video
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"), format="%(asctime)s %(levelname)s %(message)s")
-LOG = logging.getLogger("threads-publisher")
+LOG = logging.getLogger("tumblr-publisher")
 STATE_PATH = ROOT / "data" / "posting_history.json"
 
 
@@ -95,7 +95,7 @@ def run(dry_run: bool = False) -> int:
     if not remote_mode:
         eligible = [name for name in eligible if stable_video_id(videos_dir / name) not in published_video_ids]
     # For remote_mode, we can't check content hash before download.
-    # The duplicate check happens after download (lines 125-132).
+    # The duplicate check happens after download.
     if not eligible:
         LOG.info("No new eligible content found after duplicate check")
         return 0
@@ -103,7 +103,7 @@ def run(dry_run: bool = False) -> int:
     video_name = eligible[0]
     work_dir = None
     if remote_mode:
-        work_dir = Path(tempfile.mkdtemp(prefix="threads-video-"))
+        work_dir = Path(tempfile.mkdtemp(prefix="tumblr-video-"))
         try:
             video = download_public_video(owner, repo, branch, video_name, work_dir / video_name)
         except Exception as exc:
@@ -165,51 +165,58 @@ def run(dry_run: bool = False) -> int:
             raise ValueError("PUBLIC_REPO_OWNER, PUBLIC_REPO_NAME and PUBLIC_REPO_BRANCH must be configured")
         url = public_raw_url(owner, repo, branch, video_name)
         if not preflight_url(url):
-            raise ThreadsError("media_url_unavailable", "Public video URL failed unauthenticated preflight", transient=True)
+            raise TumblrError("media_url_unavailable", "Public video URL failed unauthenticated preflight", transient=True)
         job.update({"status": "processing", "caption": caption, "caption_generation_succeeded": ai_ok, "frame_timestamps": timestamps})
-        # Mark the slot as claimed *before* calling the Threads API so that
+        # Mark the slot as claimed *before* calling the Tumblr API so that
         # any concurrent or queued workflow run that reads this state file
         # will see the slot is already taken and skip it.
         if job_slot_id:
             state["slots"][job_slot_id] = {"video_id": video_id, "filename": video_name, "status": "processing", "claimed_at": now}
         write_state_atomic(STATE_PATH, state)
-        publisher = ThreadsPublisher(os.getenv("THREADS_USER_ID", ""), os.getenv("THREADS_ACCESS_TOKEN", ""), config["threads"]["graph_base_url"])
+        publisher = TumblrPublisher(
+            os.getenv("TUMBLR_BLOG_NAME", ""),
+            os.getenv("TUMBLR_CONSUMER_KEY", ""),
+            os.getenv("TUMBLR_CONSUMER_SECRET", ""),
+            os.getenv("TUMBLR_OAUTH_TOKEN", ""),
+            os.getenv("TUMBLR_OAUTH_TOKEN_SECRET", ""),
+            config["tumblr"]["api_base_url"],
+        )
         result = None
-        backoffs = config["threads"].get("backoff_seconds", [30, 120, 300])
-        for immediate_attempt in range(config["threads"]["max_attempts_per_run"]):
+        backoffs = config["tumblr"].get("backoff_seconds", [30, 120, 300])
+        for immediate_attempt in range(config["tumblr"]["max_attempts_per_run"]):
             try:
                 if immediate_attempt:
                     job["attempts"] = int(job.get("attempts", 0)) + 1
-                result = publisher.publish_video(url, caption or "", config["threads"]["processing_poll_seconds"], config["threads"]["processing_timeout_seconds"])
+                result = publisher.publish_video(url, caption or "")
                 break
-            except ThreadsError as retry_exc:
-                if retry_exc.ambiguous or not retry_exc.transient or immediate_attempt >= config["threads"]["max_attempts_per_run"] - 1:
+            except TumblrError as retry_exc:
+                if retry_exc.ambiguous or not retry_exc.transient or immediate_attempt >= config["tumblr"]["max_attempts_per_run"] - 1:
                     raise
                 if retry_exc.retry_after_seconds is not None and retry_exc.retry_after_seconds > 1800:
                     raise
                 delay = retry_exc.retry_after_seconds if retry_exc.retry_after_seconds is not None else (backoffs[min(immediate_attempt, len(backoffs) - 1)] if backoffs else 60)
-                LOG.warning("Transient Threads failure; retrying after %s seconds (category=%s)", delay, retry_exc.category)
+                LOG.warning("Transient Tumblr failure; retrying after %s seconds (category=%s)", delay, retry_exc.category)
                 time.sleep(delay)
         if result is None:
-            raise ThreadsError("publication_unconfirmed", "Publishing did not produce a confirmed result", ambiguous=True)
+            raise TumblrError("publication_unconfirmed", "Publishing did not produce a confirmed result", ambiguous=True)
         completed_at = datetime.now(timezone.utc).isoformat()
-        job.update({"status": "completed", "published_at": completed_at, "publication_id": result["publication_id"], "container_id": result["container_id"], "last_error": None})
+        job.update({"status": "completed", "published_at": completed_at, "post_id": result["post_id"], "last_error": None})
         state["pending_deletions"].append(video_name)
         if job_slot_id:
-            state["slots"][job_slot_id] = {"video_id": video_id, "filename": video_name, "publication_id": result["publication_id"], "status": "published", "published_at": completed_at, "claimed_at": now}
+            state["slots"][job_slot_id] = {"video_id": video_id, "filename": video_name, "post_id": result["post_id"], "status": "published", "published_at": completed_at, "claimed_at": now}
         write_state_atomic(STATE_PATH, state)
         return 0
     except Exception as exc:
-        err = exc if isinstance(exc, ThreadsError) else None
+        err = exc if isinstance(exc, TumblrError) else None
         category = err.category if err else type(exc).__name__
-        decision = retry_decision(err or RuntimeError(category), job["attempts"], config["threads"]["max_attempts_per_run"])
+        decision = retry_decision(err or RuntimeError(category), job["attempts"], config["tumblr"]["max_attempts_per_run"])
         next_status = "reconcile_required" if decision.get("reconcile_first") else ("retry_wait" if decision.get("background_retry") or decision.get("retry") else "failed")
         # Release the slot claim on non-ambiguous failures so the slot can
         # be retried.  Ambiguous failures keep the claim (reconcile_required)
         # to prevent a duplicate publish.
         if job_slot_id and not decision.get("reconcile_first"):
             state["slots"].pop(job_slot_id, None)
-        retry_minutes = config["threads"]["background_retry_minutes"]
+        retry_minutes = config["tumblr"]["background_retry_minutes"]
         if err and err.retry_after_seconds is not None:
             retry_minutes = max(retry_minutes, (err.retry_after_seconds + 59) // 60)
         job.update({"status": next_status, "last_error_category": category, "last_error_at": datetime.now(timezone.utc).isoformat(), "last_safe_to_retry": decision.get("retry", False), "next_retry_at": retry_at(datetime.now(timezone.utc), retry_minutes) if next_status == "retry_wait" else None})
@@ -227,7 +234,7 @@ def run(dry_run: bool = False) -> int:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Threads video publisher")
+    parser = argparse.ArgumentParser(description="Tumblr video publisher")
     parser.add_argument("--dry-run", action="store_true", help="Never publish or delete videos")
     args = parser.parse_args()
     config = load_config()

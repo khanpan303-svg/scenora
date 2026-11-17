@@ -15,10 +15,8 @@
     "max_hashtags": 5,
     "caption_fallback": "publish_without_caption"
   },
-  "threads": {
-    "graph_base_url": "https://graph.threads.net",
-    "processing_poll_seconds": 8,
-    "processing_timeout_seconds": 360,
+  "tumblr": {
+    "api_base_url": "https://api.tumblr.com/v2",
     "max_attempts_per_run": 4,
     "backoff_seconds": [
       30,

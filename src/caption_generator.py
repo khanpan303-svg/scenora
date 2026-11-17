@@ -14,7 +14,7 @@ class GeminiError(RuntimeError):
         self.retry_after_seconds = retry_after_seconds
 
 
-SYSTEM_PROMPT = """You write concise, accurate Threads video captions. Analyze only the supplied representative video frames. Do not infer unsupported facts. Return valid JSON only with exactly these keys: caption (string) and hashtags (array of strings). Make the caption natural, engaging and curiosity-driven without deceptive clickbait. Hashtags must be relevant to visible content, at most five, no duplicates, and each should start with #. Avoid filler and unnecessary emoji."""
+SYSTEM_PROMPT = """You write engaging, vivid Tumblr video captions. Analyze only the supplied representative video frames. Do not infer unsupported facts. Return valid JSON only with exactly these keys: caption (string) and hashtags (array of strings). Make the caption natural, descriptive and curiosity-driven without deceptive clickbait. Tumblr audiences appreciate personality and storytelling — keep it authentic and conversational. Hashtags must be relevant to visible content, at most five, no duplicates, and each should start with #. Avoid filler and unnecessary emoji."""
 
 
 def _parse_json(text: str) -> dict:
@@ -57,7 +57,7 @@ def build_caption_text(data: dict, max_chars: int = 500, max_hashtags: int = 5) 
 def generate_caption(frame_paths: list[Path], api_key: str, model: str, endpoint: str, max_chars: int = 500, max_hashtags: int = 5) -> str:
     if not api_key:
         raise ValueError("AI_API_KEY is not configured")
-    content = [{"type": "text", "text": "Analyze these video frames in chronological order and create a specific English Threads caption. Return JSON only."}]
+    content = [{"type": "text", "text": "Analyze these video frames in chronological order and create a specific English Tumblr caption. Return JSON only."}]
     for path in frame_paths:
         encoded = base64.b64encode(path.read_bytes()).decode("ascii")
         content.append({"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded}"}})

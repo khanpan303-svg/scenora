@@ -1,1 +1,1 @@
-"""Threads video publisher."""
+"""Tumblr video publisher."""

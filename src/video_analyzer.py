@@ -41,7 +41,7 @@ def extract_frames(path: Path, max_frames: int = 4, sample_window_seconds: int =
         raise RuntimeError(f"ffmpeg not found on PATH. PATH={os.environ.get('PATH', 'not set')}")
 
     try:
-        tempdir = Path(tempfile.mkdtemp(prefix="threads-frames-"))
+        tempdir = Path(tempfile.mkdtemp(prefix="tumblr-frames-"))
     except (OSError, FileNotFoundError) as exc:
         raise RuntimeError(f"Failed to create temporary directory for frame extraction: {exc}") from exc
     timestamps = [round(i * sample_window_seconds / max(max_frames - 1, 1), 2) for i in range(max_frames)] if max_frames > 1 else [0.0]

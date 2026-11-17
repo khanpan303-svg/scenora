@@ -8,7 +8,7 @@ from src.video_analyzer import discover_videos, stable_video_id, public_raw_url,
 from src.caption_generator import _parse_json, build_caption_text
 from src.state_manager import empty_state, validate_state, write_state_atomic, read_state, safe_video_path
 from src.retry_manager import retry_decision
-from src.threads_publisher import ThreadsError
+from src.tumblr_publisher import TumblrError
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -66,11 +66,11 @@ def test_state_atomic_round_trip_and_reject_unsafe_delete(tmp_path):
 
 
 def test_retry_does_not_repeat_ambiguous_publish():
-    e = ThreadsError("timeout", "safe", transient=True, ambiguous=True)
+    e = TumblrError("timeout", "safe", transient=True, ambiguous=True)
     decision = retry_decision(e, 1)
     assert decision["retry"] is False and decision["reconcile_first"] is True
 
 
 def test_permanent_errors_not_background_retried():
-    e = ThreadsError("auth", "safe", transient=False)
+    e = TumblrError("auth", "safe", transient=False)
     assert retry_decision(e, 4)["retry"] is False
