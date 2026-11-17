@@ -128,7 +128,7 @@ jobs:
         run: echo "Publisher reported failure. Sensitive details are intentionally omitted; inspect safe category logs and state." && exit 1
 
   persist-state:
-    if: always() && needs.publish.outputs.state_ready == 'true' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    if: always() && needs.publish.outputs.state_ready == 'true' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && (needs.publish.result == 'success' || needs.publish.result == 'skipped')
     needs: [publish]
     runs-on: ubuntu-latest
     timeout-minutes: 5
