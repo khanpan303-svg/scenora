@@ -2,9 +2,39 @@
   "duplicates": {},
   "pending_deletions": [],
   "schema_version": 1,
-  "slots": {},
+  "slots": {
+    "2026-11-15-slot-1": {
+      "claimed_at": "2026-11-17T05:51:39.117126+00:00",
+      "filename": "Aletsch.mp4",
+      "post_id": "833507513799491584",
+      "published_at": "2026-11-17T05:51:48.703584+00:00",
+      "status": "published",
+      "video_id": "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825"
+    }
+  },
   "system": {
     "schedule_initialized_at": "2026-11-15"
   },
-  "videos": {}
+  "videos": {
+    "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825": {
+      "attempts": 1,
+      "caption": "Nothing quite prepares you for the sheer vibrancy of glacial water cutting through an alpine valley. Drifting past these traditional wooden chalets feels straight out of a storybook. #switzerland #alps #landscape #travel #nature",
+      "caption_generation_succeeded": true,
+      "filename": "Aletsch.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-17T05:51:39.117126+00:00",
+      "last_error": null,
+      "post_id": "833507513799491584",
+      "published_at": "2026-11-17T05:51:48.703584+00:00",
+      "scheduled_at": "2026-11-15T09:30:00-05:00",
+      "scheduled_slot": "2026-11-15-slot-1",
+      "status": "completed",
+      "video_id": "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825"
+    }
+  }
 }
