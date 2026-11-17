@@ -166,6 +166,16 @@ def run(dry_run: bool = False) -> int:
         url = public_raw_url(owner, repo, branch, video_name)
         if not preflight_url(url):
             raise TumblrError("media_url_unavailable", "Public video URL failed unauthenticated preflight", transient=True)
+
+        # Download video data for direct upload to Tumblr
+        video_data = None
+        try:
+            video_data = video.read_bytes()
+            LOG.info("Loaded %d bytes of video data for upload", len(video_data))
+        except Exception as exc:
+            LOG.error("Failed to load video data: %s", exc)
+            raise TumblrError("video_load_failed", "Failed to load video data for upload", transient=True)
+
         job.update({"status": "processing", "caption": caption, "caption_generation_succeeded": ai_ok, "frame_timestamps": timestamps})
         # Mark the slot as claimed *before* calling the Tumblr API so that
         # any concurrent or queued workflow run that reads this state file
@@ -187,7 +197,7 @@ def run(dry_run: bool = False) -> int:
             try:
                 if immediate_attempt:
                     job["attempts"] = int(job.get("attempts", 0)) + 1
-                result = publisher.publish_video(url, caption or "")
+                result = publisher.publish_video(url, caption or "", video_data=video_data)
                 break
             except TumblrError as retry_exc:
                 if retry_exc.ambiguous or not retry_exc.transient or immediate_attempt >= config["tumblr"]["max_attempts_per_run"] - 1:

@@ -1,7 +1,8 @@
 from __future__ import annotations
-import base64, hashlib, hmac, json, secrets, time
+import base64, hashlib, hmac, json, os, secrets, time, uuid
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
+from io import BufferedReader
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode, urlsplit, urlunsplit, parse_qsl
 from urllib.request import Request, urlopen
@@ -145,11 +146,11 @@ class TumblrPublisher:
             raise TumblrError("invalid_response", "Tumblr API returned an unexpected response structure")
         return data
 
-    def publish_video(self, video_url: str, caption: str) -> dict:
-        """Create a video post on Tumblr using an external video URL.
+    def publish_video(self, video_url: str, caption: str, video_data: bytes | None = None) -> dict:
+        """Create a video post on Tumblr.
 
-        Tumblr's v2 API accepts video posts with an embed/source URL.
-        The caption is sent as the post body (HTML supported).
+        If video_data is provided (bytes), uploads the file directly as multipart form data.
+        Otherwise, creates a video post using an external URL (for embeds like YouTube).
         """
         tags = []
         # Extract hashtags from caption and convert to Tumblr tags
@@ -165,28 +166,79 @@ class TumblrPublisher:
                 clean_parts.append(word)
         body_text = " ".join(clean_parts).strip()
 
-        params = {
-            "type": "video",
-            "caption": body_text,
-            "url": video_url,
-        }
-        if tags:
-            params["tags"] = ",".join(tags)
+        if video_data is not None:
+            # Upload video directly as multipart form data
+            boundary = f"----{uuid.uuid4().hex}"
+            parts = []
 
-        url = f"{self.base}/blog/{self.blog}/post"
-        try:
-            result = self._request("POST", url, params=params)
-        except TumblrError as exc:
-            if exc.transient and exc.category in {"network_timeout", "network_error", "server_error"}:
-                exc.ambiguous = True
-            raise
+            # Add form fields
+            parts.append(f"--{boundary}".encode())
+            parts.append('Content-Disposition: form-data; name="type"'.encode())
+            parts.append(b"")
+            parts.append(b"video")
 
-        response_data = result.get("response", {})
-        post_id = response_data.get("id") if isinstance(response_data, dict) else None
-        if not post_id:
-            # Some Tumblr responses nest differently
-            post_id = result.get("id")
-        if not post_id:
-            raise TumblrError("publication_unconfirmed", "Publish response did not include a post ID", ambiguous=True)
+            parts.append(f"--{boundary}".encode())
+            parts.append('Content-Disposition: form-data; name="caption"'.encode())
+            parts.append(b"")
+            parts.append(body_text.encode("utf-8"))
 
-        return {"post_id": str(post_id)}
+            if tags:
+                parts.append(f"--{boundary}".encode())
+                parts.append('Content-Disposition: form-data; name="tags"'.encode())
+                parts.append(b"")
+                parts.append(",".join(tags).encode("utf-8"))
+
+            # Add video file
+            parts.append(f"--{boundary}".encode())
+            parts.append('Content-Disposition: form-data; name="data"; filename="video.mp4"'.encode())
+            parts.append(b"Content-Type: video/mp4")
+            parts.append(b"")
+            parts.append(video_data)
+            parts.append(f"--{boundary}--".encode())
+
+            body = b"\r\n".join(parts)
+            content_type = f"multipart/form-data; boundary={boundary}"
+
+            url = f"{self.base}/blog/{self.blog}/post"
+            try:
+                result = self._request("POST", url, body=body, content_type=content_type)
+            except TumblrError as exc:
+                if exc.transient and exc.category in {"network_timeout", "network_error", "server_error"}:
+                    exc.ambiguous = True
+                raise
+
+            response_data = result.get("response", {})
+            post_id = response_data.get("id") if isinstance(response_data, dict) else None
+            if not post_id:
+                post_id = result.get("id")
+            if not post_id:
+                raise TumblrError("publication_unconfirmed", "Publish response did not include a post ID", ambiguous=True)
+
+            return {"post_id": str(post_id)}
+
+        else:
+            # Use external URL (for embeds like YouTube)
+            params = {
+                "type": "video",
+                "caption": body_text,
+                "embed": video_url,  # Use 'embed' for external URLs
+            }
+            if tags:
+                params["tags"] = ",".join(tags)
+
+            url = f"{self.base}/blog/{self.blog}/post"
+            try:
+                result = self._request("POST", url, params=params)
+            except TumblrError as exc:
+                if exc.transient and exc.category in {"network_timeout", "network_error", "server_error"}:
+                    exc.ambiguous = True
+                raise
+
+            response_data = result.get("response", {})
+            post_id = response_data.get("id") if isinstance(response_data, dict) else None
+            if not post_id:
+                post_id = result.get("id")
+            if not post_id:
+                raise TumblrError("publication_unconfirmed", "Publish response did not include a post ID", ambiguous=True)
+
+            return {"post_id": str(post_id)}
