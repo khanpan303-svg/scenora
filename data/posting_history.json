@@ -6,27 +6,5 @@
   "system": {
     "schedule_initialized_at": "2026-11-15"
   },
-  "videos": {
-    "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825": {
-      "attempts": 1,
-      "caption": "A slow panning shot reveals a postcard-worthy alpine village nestled against bright turquoise waters and towering mountain peaks. #nature #landscape #mountains #travel #switzerland",
-      "caption_generation_succeeded": true,
-      "filename": "Aletsch.mp4",
-      "frame_timestamps": [
-        0.0,
-        1.67,
-        3.33,
-        5.0
-      ],
-      "last_attempt_at": "2026-11-17T05:22:13.485423+00:00",
-      "last_error_at": "2026-11-17T05:22:19.217396+00:00",
-      "last_error_category": "request_rejected",
-      "last_safe_to_retry": false,
-      "next_retry_at": null,
-      "scheduled_at": "2026-11-15T09:30:00-05:00",
-      "scheduled_slot": "2026-11-15-slot-1",
-      "status": "failed",
-      "video_id": "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825"
-    }
-  }
+  "videos": {}
 }
