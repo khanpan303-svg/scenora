@@ -42,7 +42,7 @@ def _stage_and_commit(state: dict, branch: str) -> bool:
     deletions = list(state.get("pending_deletions", []))
     for name in deletions:
         safe_video_path(name)
-        matching = [j for j in state["videos"].values() if j.get("filename") == name and j.get("status") == "completed" and j.get("publication_id")]
+        matching = [j for j in state["videos"].values() if j.get("filename") == name and j.get("status") == "completed" and (j.get("publication_id") or j.get("post_id"))]
         if not matching:
             raise ValueError("Deletion requested without a confirmed completed publication")
     target_state = ROOT / "data" / "posting_history.json"
