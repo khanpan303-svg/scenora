@@ -26,6 +26,14 @@
       "published_at": "2026-11-18T01:49:18.549529+00:00",
       "status": "published",
       "video_id": "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af"
+    },
+    "2026-11-16-slot-2": {
+      "claimed_at": "2026-11-18T21:05:43.294946+00:00",
+      "filename": "Arosa.mp4",
+      "post_id": "833655614110597120",
+      "published_at": "2026-11-18T21:05:47.953300+00:00",
+      "status": "published",
+      "video_id": "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19"
     }
   },
   "system": {
@@ -71,6 +79,26 @@
       "scheduled_slot": "2026-11-15-slot-2",
       "status": "completed",
       "video_id": "64a1bdebcfe60a2a572306c0481fdb5dff56e0273c5ee139d49ac6d8c55e43eb"
+    },
+    "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19": {
+      "attempts": 1,
+      "caption": "A wooden pier decorated with colorful flower boxes leads out toward a bright turquoise lake surrounded by green mountain slopes and distant hillside homes under a soft cloudy sky. #nature #lake #mountains #scenery #travel",
+      "caption_generation_succeeded": true,
+      "filename": "Arosa.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-18T21:05:43.294946+00:00",
+      "last_error": null,
+      "post_id": "833655614110597120",
+      "published_at": "2026-11-18T21:05:47.953300+00:00",
+      "scheduled_at": "2026-11-16T19:30:00-05:00",
+      "scheduled_slot": "2026-11-16-slot-2",
+      "status": "completed",
+      "video_id": "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19"
     },
     "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825": {
       "attempts": 1,
