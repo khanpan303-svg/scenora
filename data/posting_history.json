@@ -18,12 +18,40 @@
       "published_at": "2026-11-17T21:56:56.341920+00:00",
       "status": "published",
       "video_id": "64a1bdebcfe60a2a572306c0481fdb5dff56e0273c5ee139d49ac6d8c55e43eb"
+    },
+    "2026-11-16-slot-1": {
+      "claimed_at": "2026-11-18T01:49:12.791933+00:00",
+      "filename": "Appenzell.mp4",
+      "post_id": "833582854065864704",
+      "published_at": "2026-11-18T01:49:18.549529+00:00",
+      "status": "published",
+      "video_id": "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af"
     }
   },
   "system": {
     "schedule_initialized_at": "2026-11-15"
   },
   "videos": {
+    "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af": {
+      "attempts": 1,
+      "caption": "Looking out across the rushing turquoise river from a wooden suspension bridge, framed by lush green trees, towering dark mountains, and a bright blue sky filled with scattered white clouds. #nature #river #mountains #landscape #travel",
+      "caption_generation_succeeded": true,
+      "filename": "Appenzell.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-18T01:49:12.791933+00:00",
+      "last_error": null,
+      "post_id": "833582854065864704",
+      "published_at": "2026-11-18T01:49:18.549529+00:00",
+      "scheduled_at": "2026-11-16T11:30:00-05:00",
+      "scheduled_slot": "2026-11-16-slot-1",
+      "status": "completed",
+      "video_id": "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af"
+    },
     "64a1bdebcfe60a2a572306c0481fdb5dff56e0273c5ee139d49ac6d8c55e43eb": {
       "attempts": 1,
       "caption": "A quick visual journey through some of the most breathtaking alpine landscapes, featuring charming Swiss chalets nestled among rolling green hills, a train winding through the countryside, and a stunning waterfall cascading down the mountain cliffs. #switzerland #alps #travel #nature #landscape",
