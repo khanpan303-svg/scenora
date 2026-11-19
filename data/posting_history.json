@@ -34,12 +34,40 @@
       "published_at": "2026-11-18T21:05:47.953300+00:00",
       "status": "published",
       "video_id": "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19"
+    },
+    "2026-11-17-slot-1": {
+      "claimed_at": "2026-11-19T04:26:35.858709+00:00",
+      "filename": "Ascona.mp4",
+      "post_id": "833683352160780288",
+      "published_at": "2026-11-19T04:26:41.041546+00:00",
+      "status": "published",
+      "video_id": "3773502044d972dffbd2194ce7df9c1e761d71da12c504463ab8590d0e21b346"
     }
   },
   "system": {
     "schedule_initialized_at": "2026-11-15"
   },
   "videos": {
+    "3773502044d972dffbd2194ce7df9c1e761d71da12c504463ab8590d0e21b346": {
+      "attempts": 1,
+      "caption": "A breathtaking view of a lush green valley nestled between towering mountains and a vibrant blue lake, with a winding road leading through a charming village. #nature #mountains #landscape #travel #village",
+      "caption_generation_succeeded": true,
+      "filename": "Ascona.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-19T04:26:35.858709+00:00",
+      "last_error": null,
+      "post_id": "833683352160780288",
+      "published_at": "2026-11-19T04:26:41.041546+00:00",
+      "scheduled_at": "2026-11-17T09:00:00-05:00",
+      "scheduled_slot": "2026-11-17-slot-1",
+      "status": "completed",
+      "video_id": "3773502044d972dffbd2194ce7df9c1e761d71da12c504463ab8590d0e21b346"
+    },
     "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af": {
       "attempts": 1,
       "caption": "Looking out across the rushing turquoise river from a wooden suspension bridge, framed by lush green trees, towering dark mountains, and a bright blue sky filled with scattered white clouds. #nature #river #mountains #landscape #travel",
