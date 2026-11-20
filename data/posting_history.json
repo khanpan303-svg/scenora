@@ -50,6 +50,14 @@
       "published_at": "2026-11-19T22:53:18.625036+00:00",
       "status": "published",
       "video_id": "87b694a83e3b209a1a7953cbdc0199cbdde35c6ea0760cf88234d7f98cd04673"
+    },
+    "2026-11-18-slot-1": {
+      "claimed_at": "2026-11-20T01:52:25.657979+00:00",
+      "filename": "BadRagaz.mp4",
+      "post_id": "833764248134041600",
+      "published_at": "2026-11-20T01:52:29.417797+00:00",
+      "status": "published",
+      "video_id": "af8effa5fc3397f9bcfcb9f315d12682376fc4f352a0ab28cda71470364e5e93"
     }
   },
   "system": {
@@ -135,6 +143,26 @@
       "scheduled_slot": "2026-11-17-slot-2",
       "status": "completed",
       "video_id": "87b694a83e3b209a1a7953cbdc0199cbdde35c6ea0760cf88234d7f98cd04673"
+    },
+    "af8effa5fc3397f9bcfcb9f315d12682376fc4f352a0ab28cda71470364e5e93": {
+      "attempts": 1,
+      "caption": "Nothing beats a quiet afternoon overlooking this vivid green alpine lake framed by towering rocky cliffs and quaint wooden cabins. #mountains #lakeview #nature #landscape #alpine",
+      "caption_generation_succeeded": true,
+      "filename": "BadRagaz.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-20T01:52:25.657979+00:00",
+      "last_error": null,
+      "post_id": "833764248134041600",
+      "published_at": "2026-11-20T01:52:29.417797+00:00",
+      "scheduled_at": "2026-11-18T08:00:00-05:00",
+      "scheduled_slot": "2026-11-18-slot-1",
+      "status": "completed",
+      "video_id": "af8effa5fc3397f9bcfcb9f315d12682376fc4f352a0ab28cda71470364e5e93"
     },
     "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19": {
       "attempts": 1,
