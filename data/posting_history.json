@@ -58,6 +58,14 @@
       "published_at": "2026-11-20T01:52:29.417797+00:00",
       "status": "published",
       "video_id": "af8effa5fc3397f9bcfcb9f315d12682376fc4f352a0ab28cda71470364e5e93"
+    },
+    "2026-11-18-slot-2": {
+      "claimed_at": "2026-11-20T21:27:16.793715+00:00",
+      "filename": "Basel.mp4",
+      "post_id": "833838165018230784",
+      "published_at": "2026-11-20T21:27:22.070011+00:00",
+      "status": "published",
+      "video_id": "66399aa17050a821bb4997e18a3bfd071af460600796f3d26c0af4c1724a5d9e"
     }
   },
   "system": {
@@ -123,6 +131,26 @@
       "scheduled_slot": "2026-11-15-slot-2",
       "status": "completed",
       "video_id": "64a1bdebcfe60a2a572306c0481fdb5dff56e0273c5ee139d49ac6d8c55e43eb"
+    },
+    "66399aa17050a821bb4997e18a3bfd071af460600796f3d26c0af4c1724a5d9e": {
+      "attempts": 1,
+      "caption": "Wandering past vibrant green meadows, rushing turquoise streams, and classic wooden chalets framed by towering alpine peaks. Every corner of this valley feels like stepping right into a postcard. #alps #nature #landscape #mountains #travel",
+      "caption_generation_succeeded": true,
+      "filename": "Basel.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-20T21:27:16.793715+00:00",
+      "last_error": null,
+      "post_id": "833838165018230784",
+      "published_at": "2026-11-20T21:27:22.070011+00:00",
+      "scheduled_at": "2026-11-18T18:30:00-05:00",
+      "scheduled_slot": "2026-11-18-slot-2",
+      "status": "completed",
+      "video_id": "66399aa17050a821bb4997e18a3bfd071af460600796f3d26c0af4c1724a5d9e"
     },
     "87b694a83e3b209a1a7953cbdc0199cbdde35c6ea0760cf88234d7f98cd04673": {
       "attempts": 1,
