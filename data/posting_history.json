@@ -98,6 +98,14 @@
       "published_at": "2026-11-22T20:46:51.704410+00:00",
       "status": "published",
       "video_id": "3ca1354ac953bd1ca6a0a83c78029d385952143afccd5fc1376f52fa896183a1"
+    },
+    "2026-11-21-slot-1": {
+      "claimed_at": "2026-11-23T01:53:16.869721+00:00",
+      "filename": "Blausee.mp4",
+      "post_id": "834036094247010304",
+      "published_at": "2026-11-23T01:53:22.069139+00:00",
+      "status": "published",
+      "video_id": "4afe8212d3bd21d6af652f55a21152b8da6cb0a423467a36351541d3d874b177"
     }
   },
   "system": {
@@ -163,6 +171,26 @@
       "scheduled_slot": "2026-11-20-slot-2",
       "status": "completed",
       "video_id": "3ca1354ac953bd1ca6a0a83c78029d385952143afccd5fc1376f52fa896183a1"
+    },
+    "4afe8212d3bd21d6af652f55a21152b8da6cb0a423467a36351541d3d874b177": {
+      "attempts": 1,
+      "caption": "Waking up to Switzerland's postcard-perfect alpine meadows, towering cliffside waterfalls, and tranquil lakeside views. Take me here immediately. #switzerland #alps #travel #nature #landscape",
+      "caption_generation_succeeded": true,
+      "filename": "Blausee.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-23T01:53:16.869721+00:00",
+      "last_error": null,
+      "post_id": "834036094247010304",
+      "published_at": "2026-11-23T01:53:22.069139+00:00",
+      "scheduled_at": "2026-11-21T10:00:00-05:00",
+      "scheduled_slot": "2026-11-21-slot-1",
+      "status": "completed",
+      "video_id": "4afe8212d3bd21d6af652f55a21152b8da6cb0a423467a36351541d3d874b177"
     },
     "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af": {
       "attempts": 1,
