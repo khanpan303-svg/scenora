@@ -114,6 +114,14 @@
       "published_at": "2026-11-24T03:00:26.934766+00:00",
       "status": "published",
       "video_id": "9f57895bcf2049f83c1f0adc7e0cbcd8f269ba96a84cd67179443a9dd890e753"
+    },
+    "2026-11-22-slot-1": {
+      "claimed_at": "2026-11-24T10:20:04.284804+00:00",
+      "filename": "BrienzRothorn.mp4",
+      "post_id": "834158578813255680",
+      "published_at": "2026-11-24T10:20:12.495454+00:00",
+      "status": "published",
+      "video_id": "a9e45e6bb9c871b38efab835f20607bbf93acb355e7c0d8c2abcbd669c81006a"
     }
   },
   "system": {
@@ -319,6 +327,26 @@
       "scheduled_slot": "2026-11-21-slot-2",
       "status": "completed",
       "video_id": "9f57895bcf2049f83c1f0adc7e0cbcd8f269ba96a84cd67179443a9dd890e753"
+    },
+    "a9e45e6bb9c871b38efab835f20607bbf93acb355e7c0d8c2abcbd669c81006a": {
+      "attempts": 1,
+      "caption": "A crystal clear glacial stream rushes through a lush green alpine valley, framed by towering snow-dusted mountains and tall evergreen trees under a bright blue sky. A single white daisy blooms close in the foreground, swaying gently in the vibrant meadow. #nature #mountains #alpine #landscape #river",
+      "caption_generation_succeeded": true,
+      "filename": "BrienzRothorn.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-24T10:20:04.284804+00:00",
+      "last_error": null,
+      "post_id": "834158578813255680",
+      "published_at": "2026-11-24T10:20:12.495454+00:00",
+      "scheduled_at": "2026-11-22T09:30:00-05:00",
+      "scheduled_slot": "2026-11-22-slot-1",
+      "status": "completed",
+      "video_id": "a9e45e6bb9c871b38efab835f20607bbf93acb355e7c0d8c2abcbd669c81006a"
     },
     "af8effa5fc3397f9bcfcb9f315d12682376fc4f352a0ab28cda71470364e5e93": {
       "attempts": 1,
