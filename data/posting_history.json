@@ -122,6 +122,14 @@
       "published_at": "2026-11-24T10:20:12.495454+00:00",
       "status": "published",
       "video_id": "a9e45e6bb9c871b38efab835f20607bbf93acb355e7c0d8c2abcbd669c81006a"
+    },
+    "2026-11-22-slot-2": {
+      "claimed_at": "2026-11-25T03:08:05.534155+00:00",
+      "filename": "ChateauDeChillon.mp4",
+      "post_id": "834221994124935168",
+      "published_at": "2026-11-25T03:08:10.039062+00:00",
+      "status": "published",
+      "video_id": "bea2505887ff922b24a757eac27ac59c1be6b8e4ca17bb025d473f41eb4dac6a"
     }
   },
   "system": {
@@ -387,6 +395,26 @@
       "scheduled_slot": "2026-11-19-slot-2",
       "status": "completed",
       "video_id": "bdf54f128819e4f5d1dc94d900a1cc4e5009f747b8e9c7f976f8645386077df0"
+    },
+    "bea2505887ff922b24a757eac27ac59c1be6b8e4ca17bb025d473f41eb4dac6a": {
+      "attempts": 1,
+      "caption": "A peaceful alpine valley unfolds beneath towering snow-capped peaks, where wildflowers blanket the meadows and crystal-clear streams flow past grazing cows. #alps #nature #landscape #mountains #countryside",
+      "caption_generation_succeeded": true,
+      "filename": "ChateauDeChillon.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-25T03:08:05.534155+00:00",
+      "last_error": null,
+      "post_id": "834221994124935168",
+      "published_at": "2026-11-25T03:08:10.039062+00:00",
+      "scheduled_at": "2026-11-22T16:30:00-05:00",
+      "scheduled_slot": "2026-11-22-slot-2",
+      "status": "completed",
+      "video_id": "bea2505887ff922b24a757eac27ac59c1be6b8e4ca17bb025d473f41eb4dac6a"
     },
     "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19": {
       "attempts": 1,
