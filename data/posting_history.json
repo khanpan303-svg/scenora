@@ -130,6 +130,14 @@
       "published_at": "2026-11-25T03:08:10.039062+00:00",
       "status": "published",
       "video_id": "bea2505887ff922b24a757eac27ac59c1be6b8e4ca17bb025d473f41eb4dac6a"
+    },
+    "2026-11-23-slot-1": {
+      "claimed_at": "2026-11-25T22:08:08.242260+00:00",
+      "filename": "Chur.mp4",
+      "post_id": "834293719611195392",
+      "published_at": "2026-11-25T22:08:12.767979+00:00",
+      "status": "published",
+      "video_id": "6231431d3e20378752991da302d6ee132f007786dc5714427cbf639de29ea56f"
     }
   },
   "system": {
@@ -235,6 +243,26 @@
       "scheduled_slot": "2026-11-16-slot-1",
       "status": "completed",
       "video_id": "5269de8957b852d24286830ab66f51dcade840e8491e374d89fa2d938bed99af"
+    },
+    "6231431d3e20378752991da302d6ee132f007786dc5714427cbf639de29ea56f": {
+      "attempts": 1,
+      "caption": "Nothing quite like breathing in that crisp mountain air while watching the sunlight sweep across these rolling green meadows. If you need me, I'll just be daydreaming in this little corner of the world. #nature #mountains #scenery #travel #landscape",
+      "caption_generation_succeeded": true,
+      "filename": "Chur.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-25T22:08:08.242260+00:00",
+      "last_error": null,
+      "post_id": "834293719611195392",
+      "published_at": "2026-11-25T22:08:12.767979+00:00",
+      "scheduled_at": "2026-11-23T11:30:00-05:00",
+      "scheduled_slot": "2026-11-23-slot-1",
+      "status": "completed",
+      "video_id": "6231431d3e20378752991da302d6ee132f007786dc5714427cbf639de29ea56f"
     },
     "64a1bdebcfe60a2a572306c0481fdb5dff56e0273c5ee139d49ac6d8c55e43eb": {
       "attempts": 1,
