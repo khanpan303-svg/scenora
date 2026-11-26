@@ -138,12 +138,40 @@
       "published_at": "2026-11-25T22:08:12.767979+00:00",
       "status": "published",
       "video_id": "6231431d3e20378752991da302d6ee132f007786dc5714427cbf639de29ea56f"
+    },
+    "2026-11-23-slot-2": {
+      "claimed_at": "2026-11-26T05:21:34.699737+00:00",
+      "filename": "Davos.mp4",
+      "post_id": "834320999163084801",
+      "published_at": "2026-11-26T05:21:48.628977+00:00",
+      "status": "published",
+      "video_id": "168dc3b642f692b9668e04a7e74c84af3410a5295ce60843096f16635da5cbdd"
     }
   },
   "system": {
     "schedule_initialized_at": "2026-11-15"
   },
   "videos": {
+    "168dc3b642f692b9668e04a7e74c84af3410a5295ce60843096f16635da5cbdd": {
+      "attempts": 1,
+      "caption": "Watching the vibrant green hills and turquoise water roll by from a window seat. There is something so peaceful about catching glimpses of quiet countryside life tucked beneath towering mountains. #nature #landscape #mountains #lake #scenery",
+      "caption_generation_succeeded": true,
+      "filename": "Davos.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-26T05:21:34.699737+00:00",
+      "last_error": null,
+      "post_id": "834320999163084801",
+      "published_at": "2026-11-26T05:21:48.628977+00:00",
+      "scheduled_at": "2026-11-23T19:30:00-05:00",
+      "scheduled_slot": "2026-11-23-slot-2",
+      "status": "completed",
+      "video_id": "168dc3b642f692b9668e04a7e74c84af3410a5295ce60843096f16635da5cbdd"
+    },
     "3773502044d972dffbd2194ce7df9c1e761d71da12c504463ab8590d0e21b346": {
       "attempts": 1,
       "caption": "A breathtaking view of a lush green valley nestled between towering mountains and a vibrant blue lake, with a winding road leading through a charming village. #nature #mountains #landscape #travel #village",
