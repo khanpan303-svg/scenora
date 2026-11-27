@@ -162,6 +162,14 @@
       "published_at": "2026-11-27T03:10:24.369235+00:00",
       "status": "published",
       "video_id": "7ca9566a9784c36a6790ea023525796d38c1298b3ff34dbb36c20bb9937896c2"
+    },
+    "2026-11-25-slot-1": {
+      "claimed_at": "2026-11-27T22:16:24.111490+00:00",
+      "filename": "Flims.mp4",
+      "post_id": "834475432476917760",
+      "published_at": "2026-11-27T22:16:27.661605+00:00",
+      "status": "published",
+      "video_id": "ee425fb48b1644f453fe8b0886babcf7029f470fa7f36098070d968bc889b048"
     }
   },
   "system": {
@@ -547,6 +555,26 @@
       "scheduled_slot": "2026-11-16-slot-2",
       "status": "completed",
       "video_id": "cf8dc532f6b0f79c5636427ff0a23d6f87c2c62ed4aeaeee0a370cd9ea374d19"
+    },
+    "ee425fb48b1644f453fe8b0886babcf7029f470fa7f36098070d968bc889b048": {
+      "attempts": 1,
+      "caption": "A peaceful drive down a wet, winding road through a lush green valley, flanked by dramatic cliffs, waterfalls, and grazing cows under a cloudy sky. #nature #landscape #travel #mountains #countryside",
+      "caption_generation_succeeded": true,
+      "filename": "Flims.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-27T22:16:24.111490+00:00",
+      "last_error": null,
+      "post_id": "834475432476917760",
+      "published_at": "2026-11-27T22:16:27.661605+00:00",
+      "scheduled_at": "2026-11-25T08:00:00-05:00",
+      "scheduled_slot": "2026-11-25-slot-1",
+      "status": "completed",
+      "video_id": "ee425fb48b1644f453fe8b0886babcf7029f470fa7f36098070d968bc889b048"
     },
     "ffa3bd51b4c84b4bd34ea72c98d7ff4a238a974702c1239090851a3f7a139825": {
       "attempts": 1,
