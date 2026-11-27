@@ -146,6 +146,14 @@
       "published_at": "2026-11-26T05:21:48.628977+00:00",
       "status": "published",
       "video_id": "168dc3b642f692b9668e04a7e74c84af3410a5295ce60843096f16635da5cbdd"
+    },
+    "2026-11-24-slot-1": {
+      "claimed_at": "2026-11-27T00:17:10.780619+00:00",
+      "filename": "Disentis.mp4",
+      "post_id": "834392436466925568",
+      "published_at": "2026-11-27T00:17:16.529727+00:00",
+      "status": "published",
+      "video_id": "a29d51ecef71e91c4681ff5f6c7a870f5b81f052f323d72e8364dd6efd4579a5"
     }
   },
   "system": {
@@ -391,6 +399,26 @@
       "scheduled_slot": "2026-11-21-slot-2",
       "status": "completed",
       "video_id": "9f57895bcf2049f83c1f0adc7e0cbcd8f269ba96a84cd67179443a9dd890e753"
+    },
+    "a29d51ecef71e91c4681ff5f6c7a870f5b81f052f323d72e8364dd6efd4579a5": {
+      "attempts": 1,
+      "caption": "Gliding down through the misty mountain air, past the slate-roofed stone cottages of a hidden alpine village nestled right beneath a roaring waterfall. #mountains #village #waterfall #mist #architecture",
+      "caption_generation_succeeded": true,
+      "filename": "Disentis.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-27T00:17:10.780619+00:00",
+      "last_error": null,
+      "post_id": "834392436466925568",
+      "published_at": "2026-11-27T00:17:16.529727+00:00",
+      "scheduled_at": "2026-11-24T09:00:00-05:00",
+      "scheduled_slot": "2026-11-24-slot-1",
+      "status": "completed",
+      "video_id": "a29d51ecef71e91c4681ff5f6c7a870f5b81f052f323d72e8364dd6efd4579a5"
     },
     "a9e45e6bb9c871b38efab835f20607bbf93acb355e7c0d8c2abcbd669c81006a": {
       "attempts": 1,
