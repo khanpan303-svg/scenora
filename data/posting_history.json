@@ -154,6 +154,14 @@
       "published_at": "2026-11-27T00:17:16.529727+00:00",
       "status": "published",
       "video_id": "a29d51ecef71e91c4681ff5f6c7a870f5b81f052f323d72e8364dd6efd4579a5"
+    },
+    "2026-11-24-slot-2": {
+      "claimed_at": "2026-11-27T03:10:20.933941+00:00",
+      "filename": "Engelberg.mp4",
+      "post_id": "834403328905674752",
+      "published_at": "2026-11-27T03:10:24.369235+00:00",
+      "status": "published",
+      "video_id": "7ca9566a9784c36a6790ea023525796d38c1298b3ff34dbb36c20bb9937896c2"
     }
   },
   "system": {
@@ -339,6 +347,26 @@
       "scheduled_slot": "2026-11-18-slot-2",
       "status": "completed",
       "video_id": "66399aa17050a821bb4997e18a3bfd071af460600796f3d26c0af4c1724a5d9e"
+    },
+    "7ca9566a9784c36a6790ea023525796d38c1298b3ff34dbb36c20bb9937896c2": {
+      "attempts": 1,
+      "caption": "Breathe in that crisp alpine air and let the sound of this rushing turquoise stream wash all your worries away. #nature #mountains #alps #landscape #wanderlust",
+      "caption_generation_succeeded": true,
+      "filename": "Engelberg.mp4",
+      "frame_timestamps": [
+        0.0,
+        1.67,
+        3.33,
+        5.0
+      ],
+      "last_attempt_at": "2026-11-27T03:10:20.933941+00:00",
+      "last_error": null,
+      "post_id": "834403328905674752",
+      "published_at": "2026-11-27T03:10:24.369235+00:00",
+      "scheduled_at": "2026-11-24T14:30:00-05:00",
+      "scheduled_slot": "2026-11-24-slot-2",
+      "status": "completed",
+      "video_id": "7ca9566a9784c36a6790ea023525796d38c1298b3ff34dbb36c20bb9937896c2"
     },
     "8093f6fc4e55bfe6f2ffbb792a69637403ab7ebff64a32ad82913b1f3014e37b": {
       "attempts": 1,
